@@ -8,14 +8,13 @@ const createUsers = async (req: Request, res: Response) => {
 
     //data validation using zod
     const zodParsedData = userValidationSchema.parse(userData);
-
     const result = await UserServices.createUserToDb(zodParsedData);
     res.status(200).json({
       success: true,
       message: "User Created Successfully",
       data: result,
     });
-  } catch (error) {
+  } catch (error: any) {
     res.status(500).json({
       success: false,
       message: error.message || "Something went wrong",
@@ -32,8 +31,12 @@ const getUsers = async (req: Request, res: Response) => {
       message: "User Fetched Successfully",
       data: users,
     });
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: error.message || "Something went wrong",
+      error: error,
+    });
   }
 };
 
@@ -54,8 +57,12 @@ const getUserById = async (req: Request, res: Response) => {
         error: { code: 404, description: "User not found!" },
       });
     }
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: error.message || "Something went wrong",
+      error: error,
+    });
   }
 };
 
@@ -76,8 +83,12 @@ const updateUser = async (req: Request, res: Response) => {
         error: { code: 404, description: "User not found!" },
       });
     }
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: error.message || "Something went wrong",
+      error: error,
+    });
   }
 };
 
@@ -90,8 +101,12 @@ const deleteUser = async (req: Request, res: Response) => {
       message: "User deleted successfully!",
       data: null,
     });
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: error.message || "Something went wrong",
+      error: error,
+    });
   }
 };
 

@@ -9,6 +9,12 @@ export interface TAddress {
   country: string;
 }
 
+export interface IOrder {
+  productName: string;
+  price: number;
+  quantity: number;
+}
+
 export interface TUser {
   userId: number;
   username: string;
@@ -19,10 +25,5 @@ export interface TUser {
   isActive: boolean;
   hobbies: string[];
   address: TAddress;
+  orders?: IOrder[];
 }
-
-// export interface TOrder {
-//   productName: string;
-//   price: number;
-//   quantity: number;
-// }

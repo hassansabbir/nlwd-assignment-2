@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 import validator from "validator";
-import { TAddress, TFullName, TUser } from "./user.interface";
+import { IOrder, TAddress, TFullName, TUser } from "./user.interface";
 
 const fullNameSchema = new Schema<TFullName>({
   firstName: { type: String, required: [true, "First name is required"] },
@@ -11,6 +11,12 @@ const addressSchema = new Schema<TAddress>({
   street: { type: String, required: [true, "street is required"] },
   city: { type: String, required: [true, "city is required"] },
   country: { type: String, required: [true, "country is required"] },
+});
+
+const orderSchema = new Schema<IOrder>({
+  productName: String,
+  price: Number,
+  quantity: Number,
 });
 
 const userSchema = new Schema<TUser>({
@@ -35,12 +41,7 @@ const userSchema = new Schema<TUser>({
   isActive: { type: Boolean, required: [true, "isActive is required"] },
   hobbies: { type: [String], required: [true, "hobbies is required"] },
   address: addressSchema,
+  orders: [orderSchema],
 });
 
 export const UserModel = model<TUser>("User", userSchema);
-
-// const orderSchema = new Schema<TOrder>({
-//   productName: { type: String, required: [true, "productName is required"] },
-//   price: { type: Number, required: [true, "Price is required"] },
-//   quantity: { type: Number, required: [true, "Quantity is required"] },
-// });

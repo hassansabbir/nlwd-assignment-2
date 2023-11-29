@@ -14,7 +14,7 @@ app.use("/api", OrderRoutes);
 
 //
 app.get("/", (req: Request, res: Response) => {
-  res.send("Hello World!");
+  res.send("Welcome to the Assignment Express project!");
 });
 
 export default app;

@@ -1,3 +1,5 @@
+## Live Link: https://nlwd-assignment-2.vercel.app/
+
 This is a backend project which was built using express + typescript + mongoDb + mongoose .
 
 With a client site that requests the same category data or we can run this project with the help of Postman API Platform.

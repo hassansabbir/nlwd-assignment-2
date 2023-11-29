@@ -13,7 +13,7 @@ export const addressValidationSchema = z.object({
 
 export const userValidationSchema = z.object({
   userId: z.number().int().positive().min(1),
-  username: z.string().min(1),
+  username: z.string().min(1, { message: "unique username required" }),
   password: z.string().min(1),
   fullName: fullNameValidationSchema,
   age: z.number().int().positive().min(1),

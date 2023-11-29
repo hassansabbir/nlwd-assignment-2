@@ -47,7 +47,7 @@ const getUserById = async (req: Request, res: Response) => {
     if (result) {
       res.status(200).json({
         success: true,
-        message: "User is retrieved successfully",
+        message: "User fetched successfully",
         data: result,
       });
     } else {

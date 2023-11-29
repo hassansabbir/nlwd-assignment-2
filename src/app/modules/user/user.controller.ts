@@ -28,7 +28,30 @@ const getUsers = async (req: Request, res: Response) => {
   }
 };
 
+const getUserById = async (req: Request, res: Response) => {
+  const userId = parseInt(req.params.userId);
+  try {
+    const result = await UserServices.getUserByIdFromDb(userId);
+    if (result) {
+      res.status(200).json({
+        success: true,
+        message: "User is retrieved successfully",
+        data: result,
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        message: "User not found",
+        error: { code: 404, description: "User not found!" },
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const UserControllers = {
   createUsers,
   getUsers,
+  getUserById,
 };

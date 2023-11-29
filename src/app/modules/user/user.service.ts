@@ -19,8 +19,17 @@ const getUserByIdFromDb = async (userId: number) => {
   return result;
 };
 
+const updateUser = async (userId: number, updatedUser: TUser) => {
+  const result = await UserModel.findOneAndUpdate({ userId }, updatedUser, {
+    new: true,
+    projection: { password: 0 },
+  });
+  return result;
+};
+
 export const UserServices = {
   createUserToDb,
   getAllUserFromDb,
   getUserByIdFromDb,
+  updateUser,
 };

@@ -5,7 +5,7 @@ const addOrder = async (req: Request, res: Response) => {
   const userId = parseInt(req.params.userId);
 
   try {
-    await OrderServices.addOrder(userId, req.body.orders);
+    await OrderServices.addOrder(userId, req.body);
     res.json({
       success: true,
       message: "Order created successfully!",
